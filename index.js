@@ -7,7 +7,7 @@ const MONGO_HOST = process.env.MONGO_HOST || 'mongo'
 const MONGO_DB = process.env.MONGO_DB
 const APP_HOST = process.env.APP_HOST || 'app'
 const APP_URL = `http://${APP_HOST}:${APP_PORT}`
-const MONGO_URL = `mongodb+srv://yapsee:7053@cluster0.h3qctt0.mongodb.net/chat?retryWrites=true&w=majority`;
+const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}`;
 const PAGE_SIZE = process.env.PAGE_SIZE || 30
 
 const mongo = require('mongodb').MongoClient
@@ -30,7 +30,7 @@ const request = require('request').defaults({
 let clients = {}
 
 // Use connect method to connect to the server
-mongo.connect(MONGO_URL, { useNewUrlParser: true}, function(err, client) {
+mongo.connect(MONGO_URL, { useNewUrlParser: true }, function(err, client) {
   if (err) {
     throw err
   }
